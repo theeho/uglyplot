@@ -1,0 +1,38 @@
+---
+title: "uglyplotcode"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+
+```{r read-data, eval=TRUE}
+sweaters <- read_csv("data/use_this_data/holiday_sweaters-2020-12-15-clean.csv")
+```
+
+
+
+
+
+
+```{r}
+view(sweaters)
+```
+
+
+
+```{r}
+g <- ggplot(data = sweaters, aes(x = colors)) + 
+  geom_bar(color = "lightgrey", fill = "white", size = 8.0) + 
+  labs(x = "y axis", 
+       y = "x axis", 
+       title = "x axis\n value\n for\n every\n y axis\n value")
+g + coord_flip(clip = "off") + theme(axis.text.x = element_text(colour = "lightyellow2", ),
+          axis.text.y = element_text(colour = "lightyellow2")) +  stat_summary(geom = "point", mapping = aes( y = colors), fun = "median",  size = 4.0, colour = "orange") 
+```
+
+
